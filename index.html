@@ -66,6 +66,7 @@ button:hover {
 #modal img {
   max-width: 80%;
   border-radius: 20px;
+  pointer-events: none;
 }
 
 /* GIFT GRID */
@@ -119,8 +120,8 @@ button:hover {
 </div>
 
 <!-- MODAL -->
-<div id="modal">
-  <img id="modalImg" src="" onclick="handleClick()">
+<div id="modal" onclick="handleClick()">
+  <img id="modalImg" src="">
 </div>
 
 <!-- PAGE 2 -->
