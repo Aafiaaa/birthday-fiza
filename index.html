@@ -7,19 +7,10 @@
 <style>
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: Arial, sans-serif;
   text-align: center;
   color: white;
-  overflow-x: hidden;
   background: linear-gradient(135deg, #ff758c, #ff7eb3);
-}
-
-/* CONFETTI */
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
 }
 
 /* LANDING */
@@ -43,21 +34,16 @@ button {
   color: #ff4081;
   cursor: pointer;
   margin-top: 20px;
-  transition: 0.3s;
 }
 
-button:hover {
-  transform: scale(1.1);
-}
-
-/* MODAL IMAGE */
+/* MODAL */
 #modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.85);
   display: none;
   justify-content: center;
   align-items: center;
@@ -66,7 +52,15 @@ button:hover {
 #modal img {
   max-width: 80%;
   border-radius: 20px;
+  transition: opacity 0.4s ease;
   pointer-events: none;
+}
+
+#hint {
+  position: absolute;
+  bottom: 40px;
+  color: white;
+  font-size: 18px;
 }
 
 /* GIFT GRID */
@@ -96,7 +90,7 @@ button:hover {
 
 .gift img {
   width: 100%;
-  height: 150px;
+  height: 180px;
   object-fit: cover;
 }
 
@@ -105,6 +99,14 @@ button:hover {
   display: none;
   margin-top: 100px;
   font-size: 30px;
+}
+
+/* CONFETTI */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
 }
 </style>
 </head>
@@ -122,6 +124,7 @@ button:hover {
 <!-- MODAL -->
 <div id="modal" onclick="handleClick()">
   <img id="modalImg" src="">
+  <p id="hint">Tap to continue →</p>
 </div>
 
 <!-- PAGE 2 -->
@@ -130,32 +133,32 @@ button:hover {
   <div class="gifts">
 
     <div class="gift" onclick="selectGift('a Big Mansion')">
-      <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994">
+      <img src="mansion.jpg">
       <p>Big Mansion</p>
     </div>
 
     <div class="gift" onclick="selectGift('Elon Musk')">
-      <img src="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1">
+      <img src="elon.jpg">
       <p>Elon Musk</p>
     </div>
 
     <div class="gift" onclick="selectGift('a Sports Car')">
-      <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70">
+      <img src="car.jpg">
       <p>Sports Car</p>
     </div>
 
     <div class="gift" onclick="selectGift('a Private Jet')">
-      <img src="https://images.unsplash.com/photo-1581091215367-59ab6b6b3c1e">
+      <img src="jet.jpg">
       <p>Jet</p>
     </div>
 
     <div class="gift" onclick="selectGift('a Luxury Cruise')">
-      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">
+      <img src="cruise.jpg">
       <p>Cruise</p>
     </div>
 
     <div class="gift" onclick="selectGift('Burj Khalifa')">
-      <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c">
+      <img src="burj.jpg">
       <p>Burj Khalifa</p>
     </div>
 
@@ -182,15 +185,28 @@ function handleClick() {
 
   if (clickCount === 1) {
     modal.style.display = "flex";
-    img.src = "fiza1.jpeg";
+    img.style.opacity = 0;
+
+    setTimeout(() => {
+      img.src = "fiza1.jpeg";
+      img.style.opacity = 1;
+    }, 100);
+
+    music.currentTime = 0;
+    music.volume = 0.7;
     music.play();
   }
 
   else if (clickCount === 2) {
-  img.src = "fiza2.png";
-  music.currentTime = 0;  // restart audio
-  music.play();
-}
+    img.style.opacity = 0;
+
+    setTimeout(() => {
+      img.src = "fiza2.png";
+      img.style.opacity = 1;
+    }, 200);
+
+    music.currentTime = 0;
+    music.play();
   }
 
   else if (clickCount === 3) {
