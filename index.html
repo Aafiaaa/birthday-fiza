@@ -1,143 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Happy Birthday Fiza 🎉</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: linear-gradient(to right, #ff9a9e, #fad0c4);
-      color: white;
-    }
+<meta charset="UTF-8">
+<title>Happy Birthday Fiza 🎉</title>
 
-    .container {
-      padding: 50px;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  color: white;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+}
 
-    h1 {
-      font-size: 60px;
-      margin-top: 100px;
-    }
+/* CONFETTI */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
 
-    button {
-      padding: 15px 30px;
-      font-size: 18px;
-      border: none;
-      border-radius: 10px;
-      background-color: #ff4081;
-      color: white;
-      cursor: pointer;
-      margin-top: 20px;
-    }
+/* LANDING */
+#page1 {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-    button:hover {
-      background-color: #e91e63;
-    }
+h1 {
+  font-size: 60px;
+}
 
-    .hidden {
-      display: none;
-    }
+button {
+  padding: 15px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  background: white;
+  color: #ff4081;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: 0.3s;
+}
 
-    .gifts {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      padding: 40px;
-    }
+button:hover {
+  transform: scale(1.1);
+}
 
-    .gift-box {
-      background: white;
-      color: black;
-      border-radius: 10px;
-      padding: 10px;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
+/* MODAL IMAGE */
+#modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
 
-    .gift-box:hover {
-      transform: scale(1.05);
-    }
+#modal img {
+  max-width: 80%;
+  border-radius: 20px;
+}
 
-    .gift-box img {
-      width: 100%;
-      border-radius: 10px;
-      height: 150px;
-      object-fit: cover;
-    }
+/* GIFT GRID */
+#page2 {
+  display: none;
+  padding: 40px;
+}
 
-    #result {
-      font-size: 30px;
-      margin-top: 50px;
-    }
-  </style>
+.gifts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.gift {
+  background: white;
+  color: black;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.gift:hover {
+  transform: scale(1.05);
+}
+
+.gift img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+/* RESULT */
+#page3 {
+  display: none;
+  margin-top: 100px;
+  font-size: 30px;
+}
+</style>
 </head>
 
 <body>
 
+<canvas id="confetti"></canvas>
+
 <!-- PAGE 1 -->
-<div id="page1" class="container">
+<div id="page1">
   <h1>🎉 HAPPY BIRTHDAY FIZA 🎉</h1>
-  <button onclick="showGifts()">Select Your Gift 🎁</button>
+  <button onclick="handleClick()">Select Your Gift 🎁</button>
+</div>
+
+<!-- MODAL -->
+<div id="modal">
+  <img id="modalImg" src="">
 </div>
 
 <!-- PAGE 2 -->
-<div id="page2" class="hidden">
+<div id="page2">
   <h2>Choose your gift 😏</h2>
   <div class="gifts">
 
-    <div class="gift-box" onclick="selectGift('a Big Mansion')">
-      <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994" />
+    <div class="gift" onclick="selectGift('a Big Mansion')">
+      <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994">
       <p>Big Mansion</p>
     </div>
 
-    <div class="gift-box" onclick="selectGift('Elon Musk')">
-      <img src="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1" />
+    <div class="gift" onclick="selectGift('Elon Musk')">
+      <img src="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1">
       <p>Elon Musk</p>
     </div>
 
-    <div class="gift-box" onclick="selectGift('a Sports Car')">
-      <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70" />
+    <div class="gift" onclick="selectGift('a Sports Car')">
+      <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70">
       <p>Sports Car</p>
     </div>
 
-    <div class="gift-box" onclick="selectGift('a Private Jet')">
-      <img src="https://images.unsplash.com/photo-1581091215367-59ab6b6b3c1e" />
+    <div class="gift" onclick="selectGift('a Private Jet')">
+      <img src="https://images.unsplash.com/photo-1581091215367-59ab6b6b3c1e">
       <p>Jet</p>
     </div>
 
-    <div class="gift-box" onclick="selectGift('a Luxury Cruise')">
-      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" />
+    <div class="gift" onclick="selectGift('a Luxury Cruise')">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">
       <p>Cruise</p>
     </div>
 
-    <div class="gift-box" onclick="selectGift('Burj Khalifa')">
-      <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c" />
+    <div class="gift" onclick="selectGift('Burj Khalifa')">
+      <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c">
       <p>Burj Khalifa</p>
     </div>
 
   </div>
 </div>
 
-<!-- RESULT PAGE -->
-<div id="page3" class="hidden">
+<!-- PAGE 3 -->
+<div id="page3">
   <h2 id="result"></h2>
 </div>
 
+<!-- AUDIO -->
+<audio id="bgMusic" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+
 <script>
-  function showGifts() {
-    document.getElementById("page1").classList.add("hidden");
-    document.getElementById("page2").classList.remove("hidden");
+let clickCount = 0;
+
+function handleClick() {
+  clickCount++;
+
+  const modal = document.getElementById("modal");
+  const img = document.getElementById("modalImg");
+  const music = document.getElementById("bgMusic");
+
+  if (clickCount === 1) {
+    modal.style.display = "flex";
+    img.src = "fiza1.jpg";
+    music.play();
   }
 
-  function selectGift(gift) {
-    document.getElementById("page2").classList.add("hidden");
-    document.getElementById("page3").classList.remove("hidden");
-
-    document.getElementById("result").innerText =
-      "🎉 Congrats! Aafia has bought you " + gift + " 💖";
+  else if (clickCount === 2) {
+    img.src = "fiza2.jpg";
   }
+
+  else if (clickCount === 3) {
+    modal.style.display = "none";
+    document.getElementById("page1").style.display = "none";
+    document.getElementById("page2").style.display = "block";
+  }
+}
+
+function selectGift(gift) {
+  document.getElementById("page2").style.display = "none";
+  document.getElementById("page3").style.display = "block";
+
+  document.getElementById("result").innerText =
+    "🎉 Congrats! Aafia has bought you " + gift + " 💖";
+
+  startConfetti();
+}
+
+/* CONFETTI */
+const canvas = document.getElementById("confetti");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let confetti = [];
+
+function startConfetti() {
+  for (let i = 0; i < 200; i++) {
+    confetti.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 6,
+      d: Math.random() * 5
+    });
+  }
+  animateConfetti();
+}
+
+function animateConfetti() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "white";
+
+  confetti.forEach(c => {
+    ctx.beginPath();
+    ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  confetti.forEach(c => {
+    c.y += c.d;
+    if (c.y > canvas.height) c.y = 0;
+  });
+
+  requestAnimationFrame(animateConfetti);
+}
 </script>
 
 </body>
