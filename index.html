@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday Fiza 🎉</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      color: white;
+    }
+
+    .container {
+      padding: 50px;
+    }
+
+    h1 {
+      font-size: 60px;
+      margin-top: 100px;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      background-color: #ff4081;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #e91e63;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .gifts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 40px;
+    }
+
+    .gift-box {
+      background: white;
+      color: black;
+      border-radius: 10px;
+      padding: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .gift-box:hover {
+      transform: scale(1.05);
+    }
+
+    .gift-box img {
+      width: 100%;
+      border-radius: 10px;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    #result {
+      font-size: 30px;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div id="page1" class="container">
+  <h1>🎉 HAPPY BIRTHDAY FIZA 🎉</h1>
+  <button onclick="showGifts()">Select Your Gift 🎁</button>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="hidden">
+  <h2>Choose your gift 😏</h2>
+  <div class="gifts">
+
+    <div class="gift-box" onclick="selectGift('a Big Mansion')">
+      <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994" />
+      <p>Big Mansion</p>
+    </div>
+
+    <div class="gift-box" onclick="selectGift('Elon Musk')">
+      <img src="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1" />
+      <p>Elon Musk</p>
+    </div>
+
+    <div class="gift-box" onclick="selectGift('a Sports Car')">
+      <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70" />
+      <p>Sports Car</p>
+    </div>
+
+    <div class="gift-box" onclick="selectGift('a Private Jet')">
+      <img src="https://images.unsplash.com/photo-1581091215367-59ab6b6b3c1e" />
+      <p>Jet</p>
+    </div>
+
+    <div class="gift-box" onclick="selectGift('a Luxury Cruise')">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" />
+      <p>Cruise</p>
+    </div>
+
+    <div class="gift-box" onclick="selectGift('Burj Khalifa')">
+      <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c" />
+      <p>Burj Khalifa</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- RESULT PAGE -->
+<div id="page3" class="hidden">
+  <h2 id="result"></h2>
+</div>
+
+<script>
+  function showGifts() {
+    document.getElementById("page1").classList.add("hidden");
+    document.getElementById("page2").classList.remove("hidden");
+  }
+
+  function selectGift(gift) {
+    document.getElementById("page2").classList.add("hidden");
+    document.getElementById("page3").classList.remove("hidden");
+
+    document.getElementById("result").innerText =
+      "🎉 Congrats! Aafia has bought you " + gift + " 💖";
+  }
+</script>
+
+</body>
+</html>
